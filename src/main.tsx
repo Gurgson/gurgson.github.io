@@ -1,20 +1,22 @@
-import { ReactNode, StrictMode, Suspense, lazy } from 'react'
+import { ReactNode, StrictMode, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navigation from './Components/Navigation/Navigation'
 import NotFound from './Pages/NotFound'
+import HomePage from './Pages/HomePage'
+import Footer from './Components/Footer/Footer'
 
 
 type TRoute = {
   path: string,
   element: ReactNode;
 }
-const HomePageLazy = lazy(()=>import('./Pages/HomePage'));
+// const HomePageLazy = lazy(()=>import('./Pages/HomePage'));
 const routes : TRoute[] = [
   {
     path: "/",
-    element: <HomePageLazy/>  
+    element: <HomePage/>  
   },
   {
     path: "*",
@@ -25,7 +27,7 @@ const routes : TRoute[] = [
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-    <Suspense fallback={<>loader...</>}>
+    {/* <Suspense fallback={<>loader...</>}> */}
       <Navigation/>
         <main className='grid'>
         
@@ -36,7 +38,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </Routes>
       
         </main>
-      </Suspense>
+    {/* </Suspense> */}
+    <Footer/>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )

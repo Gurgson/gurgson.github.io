@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom"
+import { motion } from "framer-motion"
+// import { Link, NavLink } from "react-router-dom"
+import { FadeInTop } from "../../helpers/animation"
+import { HashLink } from 'react-router-hash-link';
 type Tlinks = {
     innerHTML: string,
     href: string,
@@ -6,23 +9,28 @@ type Tlinks = {
 const Navigation = () => {
     const links : Tlinks[] = [
         {
-            href: "/#Projects",
+            href: "/#projects",
             innerHTML: "my work",
         },
         {
-            href: "/#About",
+            href: "/#about",
             innerHTML: "about me"
         },
         {
-            href: "/#Contact",
+            href: "/#contact",
             innerHTML:  "Reach out"
         }
     ]
     return (
-    <nav className=" z-50 container absolute top-0 left-0 h-8 flex items-center text-lg justify-end gap-12 py-12 px-16 capitalize text-accent">
+    <motion.nav 
+    variants={FadeInTop}
+    initial= "initial"
+    animate="end"
+    transition={{duration: 1, delay: 1.3}}
+    className=" z-50 container absolute top-0 left-0 h-8 flex items-center text-lg justify-end gap-6 px-8 md:gap-12 py-12 md:px-16 capitalize text-accent">
         {
             links.map((item, index)=>
-            <Link 
+            <HashLink 
                 to={item.href} 
                 key={`nav-item-${index}`}
                 className="hover:text-tetriary duration-500 transition-all shadow"
@@ -30,9 +38,9 @@ const Navigation = () => {
                 {
                     item.innerHTML
                 }
-            </Link>)
+            </HashLink>)
         }
-    </nav>
+    </motion.nav>
   )
 }
 

@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -12,6 +13,9 @@ export default {
         tetriary: "var(--color-tetriary)",
         accent: "var(--color-accent)"
       },
+      gridTemplateColumns: {
+        
+      }
       
     },
   },
