@@ -26,7 +26,8 @@ const Divider : FC<IProps>= ({imgUrl, children}) => {
         <motion.path d="M0,0 100,0 100,100" strokeWidth={40} pathLength={pathLength}/>
       </svg>
       <div className=" absolute w-full h-full top-0 left-0 bg-slate-800/90"/>
-      <span className="absolute text-6xl uppercase tracking-widest text-center  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <span 
+        className="absolute text-6xl  uppercase tracking-widest text-center  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         {children}
       </span>
       <svg className=" w-[180px] h-1/2 absolute rotate-180 bottom-0 left-0 fill-none  stroke-orange-500/35 z-10" viewBox="0 0 100 100">

@@ -11,6 +11,18 @@ export const FadeInTop : Variants = {
         opacity: 1
     }
     
+
+}
+export const fadeFromBottom : Variants = {
+    initial:{
+        translateY: "50%",
+        opacity: 0,
+    },
+    end: {
+        translateY:0,
+        opacity: 1
+    }
+    
 }
 export const scale : Variants = {
     initial:{
@@ -33,10 +45,10 @@ export const opacityUp : Variants = {
 }
 export const imgAnimation : Variants = {
     initial:{
-        scale: 1,
+        rotateZ:-2.5
     },
     end: {
-        scale: 1.2,
+        rotateZ: 2.5
     }
     
 }

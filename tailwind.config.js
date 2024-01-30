@@ -13,9 +13,10 @@ export default {
         tetriary: "var(--color-tetriary)",
         accent: "var(--color-accent)"
       },
-      gridTemplateColumns: {
-        
-      }
+      screens: {
+        sc850: "850px"
+      },
+      // gridColumn: "repeat(5,55px)"
       
     },
   },

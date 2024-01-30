@@ -1,13 +1,23 @@
-import React from 'react'
+import { useInView,motion } from 'framer-motion';
+import Highlight from '../Higlight/Highlight';
+import { useRef } from 'react';
+import { fadeFromBottom } from '../../helpers/animation';
 
 const Footer = () => {
+  const ref = useRef<HTMLDivElement>(null)
+    const isInView = useInView(ref, {once: true})
     const date = new Date();
   return (
-        <footer className="relative ">
-            <h1 className=' z-10 [text-shadow: 0_0_4px_4px_var(--color-tetriary)] text-4xl absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2'>Jakub Stapiński <span className=' text-tetriary'>&copy;</span> {date.getFullYear()}</h1>
-            <h2 className='  z-10 text-2xl text-white/90 absolute bottom-1/4 left-1/2 -translate-x-1/2'>I hope to see you soon!</h2>
-            <img className="w-full h-[400px" src="/src/assets/footer-bg.svg" alt="" />
-        </footer>
+        <motion.footer 
+            variants={fadeFromBottom}
+            ref={ref}
+            initial="initial"
+            animate={(isInView)?"end":""}
+            transition={{staggerChildren: 0.6, delayChildren: 1, duration: 1.5, }}
+            className=" flex flex-col justify-center items-center  relative bg-[url('/src/assets/footer-bg.svg')] min-h-[400px]  bg-no-repeat bg-cover">
+            <motion.h1 variants={fadeFromBottom} className=' z-30 text-4xl'>Jakub Stapiński <Highlight>&copy;</Highlight> {date.getFullYear()}</motion.h1>
+            <motion.h2 variants={fadeFromBottom} className='  z-30 text-2xl'>I hope to see you soon!</motion.h2>
+        </motion.footer>
   )
 }
 

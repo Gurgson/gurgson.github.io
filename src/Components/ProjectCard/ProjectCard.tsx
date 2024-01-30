@@ -1,8 +1,10 @@
-import  { CSSProperties, FC, useRef, useState } from 'react'
+import  {  FC, useRef, useState } from 'react'
 import { TProjectData } from '../../data/project'
 import { Link } from 'react-router-dom'
 import { useInView, motion } from 'framer-motion'
-import { opacityUp } from '../../helpers/animation'
+import { fadeFromBottom, opacityUp } from '../../helpers/animation'
+import { IoMdPerson } from "react-icons/io";
+import Highlight from '../Higlight/Highlight'
 
 
 
@@ -14,29 +16,21 @@ const ProjectCard : FC<IProps> = ({data,index: index}) => {
   const [isReversed] = useState<boolean>(index%2===1);
   const ContainerRef = useRef<HTMLDivElement>(null);
   const isInview = useInView(ContainerRef, {once: true});
-  //diamonds 
-  const diamonds = Array.from({length: index+1}, (_, index)=>
-  {
-    const styleSheet : CSSProperties= (!isReversed)?{
-      top: index%2===0?`${25*index}px`:`0`,
-      left: index%2===1?`${22.5*(index+1)}px`:`0`,
-    }:{
-      top: index%2===0?`${25*index}px`:`0`,
-      right: index%2===1?`${22.5*(index+1)}px`:`0`,
-    }
-    return <motion.span
-      style={styleSheet}
-      variants={opacityUp}
-      key={`${data.title}-diamond-${index}`} 
-      className={`z-20 clip-polygon w-[65px] h-[65px] absolute ${isReversed?"bg-gradient-to-bl":"bg-gradient-to-br"} from-slate-900 via-slate-800 to-slate-500  shadow-2xl  -translate-y-1/2 ${(isReversed)?"translate-x-1/2 ":"-translate-x-1/2 "} `}
-      ></motion.span>}
-  );
+
   return (
-    <div
-      // container 
+    <motion.div
+      variants={fadeFromBottom}
+      initial="initial"
+      animate={isInview?"end":""}  
+      transition={{
+        duration: 2.2,
+        type: "spring"
+      }}
       ref={ContainerRef}
+
       className={` relative flex flex-col ${isReversed?"md:flex-row-reverse":"md:flex-row"} z-10  mx-8 md:max-w-3xl bg-transparent`}
-    >   
+    > 
+
       <motion.div 
       variants={opacityUp}
       initial="initial"
@@ -50,9 +44,10 @@ const ProjectCard : FC<IProps> = ({data,index: index}) => {
 
         }
       }
-      className=' relative md:w-3/5 ' >
-        <div className='absolute w-full h-full'>
-         {diamonds} 
+      className=' relative md:w-3/5 transition-all  group' >
+       
+        <div className='w-[90%] h-[90%] left-[5%] top-[5%] border-8  border-offset border-transparent duration-700 delay-300 group-hover:border-tetriary absolute'>
+ 
         </div>
         
         {/* <motion.div 
@@ -68,11 +63,12 @@ const ProjectCard : FC<IProps> = ({data,index: index}) => {
           /> */}
         <div 
         // image shadow
-        className={' absolute top-0 left-0 w-full h-full bg-slate-800/60'}/>
+        className={' absolute top-0 left-0 w-full h-full bg-slate-800/60 hover:bg-slate-900/80 duration-700'}/>
         <p 
         // project tag (front/back-end, fullstack)
-        className={`md:bottom-3 md:top-[auto] top-3  right-3  ${isReversed?"md:rigth-3":"md:left-3"} uppercase  absolute  font-bold text-lg `}><span className=' text-tetriary'># </span> {data.tag}</p>
+        className={`md:bottom-3 md:top-[auto] top-3  right-3  ${isReversed?"md:rigth-3":"md:left-3"} uppercase  absolute  font-bold text-lg `}><Highlight># </Highlight> {data.tag}</p>
         <h3 className=' md:hidden absolute bottom-0 p-2 w-full text-center bg-slate-900/70 border-b-2 border-b-primary  left-1/2 -translate-x-1/2 z-20 text-2xl sm:text-6xl '> {data.title}</h3>
+        <p className={`absolute top-3 md:top-auto left-3 ${isReversed?"md:left-3":"md:right-3 md:left-auto"}  md:bottom-3  flex  text-xl justify-center items-center gap-2`}> <IoMdPerson className="text-tetriary scale-110"/> {data.people}</p>
       </motion.div>
       
       
@@ -82,7 +78,7 @@ const ProjectCard : FC<IProps> = ({data,index: index}) => {
       className={`flex flex-col justify-between md:gap-0 gap-8 py-4  h-full md:w-2/5 z-10 ${isReversed?"":" md:text-end"}`} >
   
           <h1 className={` hidden md:block text-xl border-b-4 border-${isReversed?"l":"r"}-4  drop-shadow-2xl pb-1 pr-1 border-primary text-center rounded-e rounded-t-none uppercase`}> 
-            <span className="text-tetriary"> {index+1}. </span>
+            <Highlight> {`${index+1}.`} </Highlight>
            {data.title}
           </h1>
           <div className={ ` relative bg-primary md:w-[145%] ${isReversed?"":"md:-translate-x-28"} p-2 rounded drop-shadow-md text-start min-h-[70px]`}>
@@ -95,10 +91,9 @@ const ProjectCard : FC<IProps> = ({data,index: index}) => {
           <ul className='px-4 list-image md:text-xs md:columns-2 text-start'>
             {
               data.technologies.map((item, i)=><li key={`tech-list-item-${i}`} className=''>
-                <span className=' text-tetriary'> &lt; </span>
+                <Highlight>&lt;</Highlight>
                 <span>{item}</span>
-                <span className=' text-tetriary'> &#47;&gt; </span>
-
+                <Highlight> &#47;&gt;</Highlight>
               </li>)
             }
           </ul>
@@ -115,7 +110,7 @@ const ProjectCard : FC<IProps> = ({data,index: index}) => {
                 }
           </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
