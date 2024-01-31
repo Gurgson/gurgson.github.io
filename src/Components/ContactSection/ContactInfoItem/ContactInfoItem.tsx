@@ -1,6 +1,9 @@
-import  { FC, ReactNode } from 'react'
+import  { FC, ReactNode, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Highlight from '../../Higlight/Highlight'
+import {  motion, useInView } from 'framer-motion'
+import {  FadeFromSide } from '../../../helpers/animation'
+
 export type TContactInfoItem =  {
     tag: {
         icon: ReactNode
@@ -16,8 +19,11 @@ interface IProps {
     data: TContactInfoItem
 }
 const ContactInfoItem : FC<IProps>= ({data}) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, {once:true});
+    
   return (
-    <figure className=" max-w-[155px] grid gap-1 group">
+    <motion.figure ref={ref} variants={FadeFromSide(false)} initial="initial" animate={isInView?"end":""} transition={{duration: 0.7}}  className=" max-w-[155px] grid gap-1 group">
         <div className='flex gap-2 items-center cursor-pointer'>
             <span className=' text-2xl  group-hover:animate-pulse'>{data.tag.icon}</span>  
             <Highlight>-</Highlight>
@@ -31,7 +37,7 @@ const ContactInfoItem : FC<IProps>= ({data}) => {
                 {data.target.name}
             </Link>
         </figcaption>
-    </figure>
+    </motion.figure>
   )
 }
 

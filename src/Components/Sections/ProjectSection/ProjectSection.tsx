@@ -10,14 +10,14 @@ const ProjectSection : FC = () => {
         className="overflow-hidden relative flex justify-center items-center flex-col py-16 gap-20"
     >
       <div className="absolute w-full h-full  top-0 left-0"/>
-
-
-      {projectsList.map((item,index)=>
-      <ProjectCard  
-        key={`${item.title}-project-card-${index}`}  
-        index={index} 
-        data={item}  
-        />)}
+        {
+          projectsList.map((item,index)=>
+          <ProjectCard  
+            key={`${item.title}-project-card-${index}`}  
+            index={index} 
+            data={item}  
+            />)
+        }
     </section>
   )
 }

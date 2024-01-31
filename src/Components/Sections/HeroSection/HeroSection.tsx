@@ -66,7 +66,7 @@ const HeroSection = () => {
           transition={{
             duration: 0.6,
           }}
-          className="bg-[url('./assets/bg1-min.png')] absolute inset-0 z-20 bg-bottom bg-cover"
+          className="bg-[url('/bgs/bg1-min.png')] absolute inset-0 z-20 bg-bottom bg-cover"
           style={
             {
                y: (paralaxStop)?bgY: ""
@@ -82,7 +82,7 @@ const HeroSection = () => {
             type:  "spring",
             delay: 0.3
           }}
-          className="bg-[url('./assets/bg2-min.png')] absolute inset-0  bg-top bg-cover   "
+          className="bg-[url('/bgs/bg2-min.png')] absolute inset-0  bg-top bg-cover   "
           style={
             {
               y: (paralaxStop)?bg2Y: ""

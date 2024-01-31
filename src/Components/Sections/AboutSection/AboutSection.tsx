@@ -9,13 +9,13 @@ const AboutSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isDescriptionInView = useInView(ref, {once: true})
   return (
-    <section id="about" className="  min-h-[600px] py-20 overflow-hidden bg-cover bg-center bg-[url('/src/assets/bg-contact.svg')]">
+    <section id="about" className="  min-h-[600px] py-20 overflow-hidden bg-cover bg-center bg-[url('/bgs/bg-contact.svg')]">
         <TechnologyPanel/>
         
        <motion.article
-          ref={ref}
+        ref={ref}
         variants={fadeFromBottom} 
-         initial="initial"
+        initial="initial"
         
          animate={(isDescriptionInView)?"end":""}
          transition={{staggerChildren: 0.4, duration: 1}}

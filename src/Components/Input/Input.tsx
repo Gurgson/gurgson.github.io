@@ -1,6 +1,10 @@
+import { motion } from 'framer-motion'
 import { FC, HTMLInputTypeAttribute } from 'react'
+import {  opacityUp } from '../../helpers/animation'
+
 export interface TInputProps  {
     type?: HTMLInputTypeAttribute | "textarea",
+
     data: {
         placeholder: string,
         name: string,
@@ -24,12 +28,16 @@ const Input : FC<TInputProps> = ({type, data}) => {
         </label>
         {
         (type === "textarea")?
-        <textarea 
+        <motion.textarea 
         {...commonAtributes}
+        variants={opacityUp}
+        name={data.name}
         />
         :
-        <input
+        <motion.input
         {...commonAtributes}
+        name={data.name}
+        variants={opacityUp}
         type={type ||"text"}/>
         
         }

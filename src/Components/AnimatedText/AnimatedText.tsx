@@ -31,18 +31,21 @@ const AnimatedText : FC<IProps>= ({children, classname, delayMultiplier, stopAni
     <motion.span 
         key={children}
         className={classname}
-        transition={{ delay: delayAnimation || 0, staggerChildren: 0.2 * (delayMultiplier || 1), type: "spring"}}
+        transition={{ delayChildren: delayAnimation || 0, staggerChildren: 0.2 * (delayMultiplier || 1), type: "spring"}}
         initial="hidden"
         animate={(stopAnimation)?"":"visible"}
         >
         {
-            children.split("").map((char, index)=><motion.span 
-                key={`letter-${index}`}
-                variants={defaultAnimations}
-                viewport={{once:true}}
-                className='inline-block'>
-                    {char}
-                </motion.span>)
+            
+            children.split(" ").map((word,wind)=><span className=' inline-block' key={`word-${wind}`}>
+                {
+                    word.split("").map((char, cinx)=>
+                    <motion.span className=' inline-block' variants={defaultAnimations} key={`word-${cinx}`}>
+                        {char}
+                    </motion.span>)
+                }
+                <span className=' inline-block'>&nbsp;</span>
+            </span>)
         }
     </motion.span>
   )

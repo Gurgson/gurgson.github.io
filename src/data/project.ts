@@ -17,7 +17,7 @@ export type TProjectData = {
     links: {
         github: string,
         live?: string,
-        details: string
+        details?: string
     }
 }
 const projectsList : TProjectData[] = [
@@ -37,7 +37,7 @@ const projectsList : TProjectData[] = [
         links: {    
             github: "https://github.com/Gurgson/daily-podcast",
             live:"https://podofcast.netlify.app/",
-            details: "/project/podofcast"
+            // details: "/project/podofcast"
         }
 
         
@@ -59,7 +59,7 @@ const projectsList : TProjectData[] = [
         links: {
             github: "https://github.com/Gurgson/remake-studio",
             live: "https://remake-studio.netlify.app/",
-            details: "/project/remakestudio"
+            // details: "/project/remakestudio"
 
         },
     },   
@@ -72,16 +72,16 @@ const projectsList : TProjectData[] = [
             Technlogies.mongo,
         ],
         people:2,
-        createdAt: new Date("2023 Dec 22"),
-        pfp:"RemakeStudio.png",
+        createdAt: new Date(),
+        pfp:"geopuzzle.jpg",
         status: "ongoing",
         tag: EProjectTag.be,
-        description:"Reacreational web application where you solve series of riddles, where answear is on the map.",
+        description:"Reacreational web application where you solve series of riddles, where answear is on the map. My role is to create back-end system.",
         links: {
-            github: "https://github.com/Gurgson/remake-studio",
-            details: "/project/remakestudio"
+            github: "https://github.com/Pawlaczenko/geopuzzle",
+            // details: "/project/remake"
 
-        },
+        }
     },
     {
         title: "P.Electric.pl",
@@ -92,38 +92,21 @@ const projectsList : TProjectData[] = [
         ],
         people:1 ,
         createdAt: new Date("2023 Jan"),
-        pfp:"RemakeStudio.png",
-        status: "ongoing",
+        pfp:"pele.png",
+        status:  "completed",
         tag: EProjectTag.fe,
-        description:"My first landing page was created with React. It's here to show how my React skills developed over time. Furthermore, that's the first project I've actually sold to a client.",
+        description:"My first landing page created with React. It's here to show how my web dev skills developed over time. Furthermore, that's the first project I've actually sold to a client.",
         links: {
-            github: "https://github.com/Gurgson/remake-studio",
-            details: "/project/remakestudio",
-            live: "https://pelectric.pl"
-
-        },
-    },
-    {
-        title: "P.Electric.pl",
-        technologies: [
-            Technlogies.js,
-            Technlogies.react,
-
-        ],
-        people:1 ,
-        createdAt: new Date("2023 Jan"),
-        pfp:"RemakeStudio.png",
-        status: "ongoing",
-        tag: EProjectTag.fe,
-        description:"My first landing page was created with React. It's here to show how my React skills developed over time. Furthermore, that's the first project I've actually sold to a client.",
-        links: {
-            github: "https://github.com/Gurgson/remake-studio",
-            details: "/project/remakestudio",
+            github: "https://github.com/Gurgson/P.Electric",
+            // details: "/project/pelectric",
             live: "https://pelectric.pl"
 
         },
     }
 
 ]
-projectsList.map(item => item.pfp = `/project-covers/${item.pfp}`)
+projectsList.map(item => {
+    item.pfp = `/project-covers/${item.pfp}`
+
+})
 export default  projectsList

@@ -1,5 +1,18 @@
 import { Variants } from "framer-motion";
 
+export const FadeFromSide = (direction: boolean) : Variants=> {
+    return {
+        initial: {
+            opacity: 0,
+            translateX: `${!direction?"-":""}50%`
+        },
+        end: {
+            opacity: 1,
+            translateX: "none"
+        }
+    }
+}
+
 export const FadeInTop : Variants = {
      
     initial:{
