@@ -7,7 +7,7 @@ const ProjectSection : FC = () => {
     return (
     <section 
         id="projects"
-        className="overflow-hidden relative flex justify-center items-center flex-col py-16 gap-20"
+        className="overflow-hidde relative flex justify-center items-center flex-col py-16 gap-20 bg-[url('/bgs/texture.svg')]"
     >
       <div className="absolute w-full h-full  top-0 left-0"/>
         {

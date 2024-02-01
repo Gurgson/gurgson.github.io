@@ -35,7 +35,7 @@ const HeroSection = () => {
   return (
     <section 
         ref={sectionRef}
-        className={`  relative min-h-screen bg-[url('./assets/bg-min.png')] bg-cover bg-no-repeat overflow-hidden`}
+        className={`  relative min-h-screen bg-[url('/bgs/hero-bg-main.jpg')] bg-cover bg-no-repeat overflow-hidden`}
         >
           <ShootingStar left="80%" delay={2} repeatDelay={2}/>
           <ShootingStar left="30%" delay={3} repeatDelay={2.5}/>
@@ -66,7 +66,7 @@ const HeroSection = () => {
           transition={{
             duration: 0.6,
           }}
-          className="bg-[url('/bgs/bg1-min.png')] absolute inset-0 z-20 bg-bottom bg-cover"
+          className="bg-[url('/bgs/hero-bg-bottom.png')] absolute inset-0 z-20 bg-bottom bg-cover"
           style={
             {
                y: (paralaxStop)?bgY: ""
@@ -82,7 +82,7 @@ const HeroSection = () => {
             type:  "spring",
             delay: 0.3
           }}
-          className="bg-[url('/bgs/bg2-min.png')] absolute inset-0  bg-top bg-cover   "
+          className="bg-[url('/bgs/hero-bg-mid.png')] absolute inset-0  bg-top bg-cover   "
           style={
             {
               y: (paralaxStop)?bg2Y: ""
