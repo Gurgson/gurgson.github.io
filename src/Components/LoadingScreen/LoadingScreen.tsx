@@ -23,7 +23,7 @@ const LoadingScreen = () => {
   const loading = useContext(LoadingScreenContext); 
   const [isHidden, setHidden] = useState<boolean>(true);
   const hide = useEffect(()=>{
-    loading?.isLoading && setTimeout(() => {
+    !loading?.isLoading && setTimeout(() => {
       setHidden(false)
     }, 1500);
 
