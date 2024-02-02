@@ -16,7 +16,21 @@ export default {
       screens: {
         sc850: "850px"
       },
-      // gridColumn: "repeat(5,55px)"
+      keyframes: {
+        loadingCircle: {
+          "0%": {
+            transform: "scale(0,0)",
+            left: 0
+          },
+          "100%": {
+            transform: "scale(1,1)",
+            left: "100%"
+          }
+        }
+      },
+      animation: {
+        "loadingCircle": "loadingCircle 500ms linear 0ms infinite"
+      }
       
     },
   },

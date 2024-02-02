@@ -1,7 +1,8 @@
 import { useScroll, useTransform, motion, Variants } from "framer-motion";
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import AnimatedText from "../../AnimatedText/AnimatedText";
 import ShootingStar from "./ShootingStar";
+import { LoadingScreenContext } from "../../../context/LoadingScreenContext";
 
 const animationSlideIn : Variants = {
   initial: {
@@ -13,6 +14,14 @@ const animationSlideIn : Variants = {
 }
 
 const HeroSection = () => {
+  //loading screen func  
+  const loadingContext = useContext(LoadingScreenContext);
+  const [img1Loading, setImg1Loading] = useState<boolean>(false);
+  const [img2Loading, setImg2Loading] = useState<boolean>(false);
+  useEffect(()=>{
+    (img1Loading && img2Loading) && loadingContext?.setLoading(false)
+  },[loadingContext, img1Loading, img2Loading])
+  //paralax func
     const [paralaxStop, setParalaxStop] = useState<boolean>(false)
     const sectionRef = useRef<HTMLDivElement>(null);
     const {scrollYProgress} = useScroll({
@@ -35,6 +44,7 @@ const HeroSection = () => {
   return (
     <section 
         ref={sectionRef}
+        
         className={`  relative min-h-screen bg-[url('/bgs/hero-bg-main.jpg')] bg-cover bg-no-repeat overflow-hidden`}
         >
           <ShootingStar left="80%" delay={2} repeatDelay={2}/>
@@ -59,21 +69,27 @@ const HeroSection = () => {
             </p>
             <motion.h2 className="text-3xl -tracking-wider  uppercase  ">javascript developer</motion.h2>
         </motion.div>
-        <motion.div
+        <motion.img
+          src="/bgs/hero-bg-bottom.png"
+          alt="bckgroun-1"
+          onLoad={()=>{ setImg1Loading(true)}}
           variants={animationSlideIn}
           initial="initial"
           animate="end"
           transition={{
             duration: 0.6,
           }}
-          className="bg-[url('/bgs/hero-bg-bottom.png')] absolute inset-0 z-20 bg-bottom bg-cover"
+          className="absolute bottom-0 z-20 bg-bottom bg-cover"
           style={
             {
                y: (paralaxStop)?bgY: ""
             }
           }
         />
-        <motion.div
+        <motion.img
+          onLoad={()=>{ setImg2Loading(true)}}
+          src="/bgs/hero-bg-mid.png"
+          alt="bckgroun-2"
           variants={animationSlideIn}
           initial="initial"
           animate="end"
@@ -82,7 +98,7 @@ const HeroSection = () => {
             type:  "spring",
             delay: 0.3
           }}
-          className="bg-[url('/bgs/hero-bg-mid.png')] absolute inset-0  bg-top bg-cover   "
+          className="absolute bottom-5  bg-top bg-cover   "
           style={
             {
               y: (paralaxStop)?bg2Y: ""

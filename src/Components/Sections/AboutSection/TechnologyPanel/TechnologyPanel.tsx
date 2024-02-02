@@ -91,7 +91,7 @@ const TechnologyPanel = () => {
          className="border-[30%_70%_70%_30%_/_30%_30%_70%_70%]  overflow-hidden p-4 flex flex-col-reverse  sc850:flex-col  h-full">
             <a href="https://github.com/gurgson" target="_blank">
                 <motion.img
-                    
+                    loading="lazy"
                     variants={imgAnimation} 
                     initial="initial"
                     animate="end"
@@ -111,7 +111,8 @@ const TechnologyPanel = () => {
                     }}
                     
                     className=" h-full max-h-[300px] aspect-square object-cover  relative border-8  border-slate-900/80 rounded-[50%]  "
-                    src="/aboutSection/pfp.jpg" alt="Picture of me" loading="lazy"/>
+                    src="/aboutSection/pfp.jpg" alt="Picture of me" 
+                    />
             </a>
             <figcaption className=" font-bold text-2xl text-center w-[55%] flex justify-between mx-auto">
                 <Highlight>&#123;</Highlight>
