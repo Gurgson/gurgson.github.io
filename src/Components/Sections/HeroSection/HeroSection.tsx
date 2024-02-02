@@ -95,7 +95,7 @@ const HeroSection = () => {
             type:  "spring",
             delay: 0.3
           }}
-          className="absolute bottom-5  bg-top bg-cover   "
+          className="absolute bottom-5  bg-top   "
           style={
             {
               y: (paralaxStart)?bg2Y: ""
