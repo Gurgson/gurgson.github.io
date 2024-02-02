@@ -1,6 +1,7 @@
 import {  useContext, useEffect, useState } from "react"
 import { LoadingScreenContext } from "../../context/LoadingScreenContext"
 import { Variants, motion } from "framer-motion";
+import { hideUp } from "../../helpers/animation";
 const loaderAnimation : Variants={
    
     "initial": {
@@ -47,14 +48,18 @@ const LoadingScreen = () => {
             {
             Array(5).fill(null).map((_,index)=>
               <motion.span 
-              className={`w-7 h-7 ${!loading?.isLoading && " opacity-0" } duration-300 transition-all bg-orange-500/85 rounded-[50%]`}
-              animate={{
-                translateX: "-37.5%",
-                scale: 0,
-                transition: {
-                  repeat: Infinity,
-                  duration: 1,
-                  delay: index/1.5
+              className={`w-7 h-7 bg-orange-500/85 rounded-[50%]`}
+              animate={
+                (!loading?.isLoading)?
+                hideUp
+                :
+                {
+                  translateX: "-37.5%",
+                  scale: 0,
+                  transition: {
+                    repeat: Infinity,
+                    duration: 1,
+                    delay: index
                 }
                 
               }}

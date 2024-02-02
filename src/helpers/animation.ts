@@ -56,6 +56,18 @@ export const opacityUp : Variants = {
     }
     
 }
+export const hideUp : Variants = {
+    initial:{
+        
+        opacity: 0,
+        
+    },
+    end: {
+        translateY: "-100%",
+        opacity: 1,
+    }
+    
+}
 export const imgAnimation : Variants = {
     initial:{
         rotateZ:-2.5
