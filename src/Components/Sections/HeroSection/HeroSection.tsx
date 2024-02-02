@@ -22,7 +22,7 @@ const HeroSection = () => {
     (img1Loading && img2Loading) && loadingContext?.setLoading(false)
   },[loadingContext, img1Loading, img2Loading])
   //paralax func
-    const [paralaxStop, setParalaxStop] = useState<boolean>(false)
+    const [paralaxStart, startParalax] = useState<boolean>(false)
     const sectionRef = useRef<HTMLDivElement>(null);
     const {scrollYProgress} = useScroll({
       target: sectionRef,
@@ -30,11 +30,8 @@ const HeroSection = () => {
     });
     
     useEffect(() => {
-      const timeout = setTimeout(() => {
-        setParalaxStop(true);
-      }, 2000);
-      return () => clearTimeout(timeout);
-    },[]);
+      !loadingContext?.isLoading && startParalax(true);
+    },[loadingContext]);
     const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
     const bg2Y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     const opacity = useTransform(scrollYProgress, [1, 0], ["30%", "100%"]);
@@ -55,7 +52,7 @@ const HeroSection = () => {
           className="text-center grid gap-8 font-bold top-[20%] relative z-20 "
           style={
             {
-              y: (paralaxStop)?textY: "",
+              y: (paralaxStart)?textY: "",
               opacity,
               letterSpacing: ls
             }
@@ -82,7 +79,7 @@ const HeroSection = () => {
           className="absolute bottom-0 z-20 bg-bottom bg-cover"
           style={
             {
-               y: (paralaxStop)?bgY: ""
+               y: (paralaxStart)?bgY: ""
             }
           }
         />
@@ -101,7 +98,7 @@ const HeroSection = () => {
           className="absolute bottom-5  bg-top bg-cover   "
           style={
             {
-              y: (paralaxStop)?bg2Y: ""
+              y: (paralaxStart)?bg2Y: ""
             }
           }
         />
